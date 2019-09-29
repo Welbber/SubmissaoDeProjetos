@@ -21,71 +21,66 @@ import java.lang.reflect.Type;
 @Consumes(MediaType.APPLICATION_JSON)
 public class GsonProvider<T> implements MessageBodyReader<T>, MessageBodyWriter<T> {
 
-    private static final String PRETTY_PRINT = "pretty-print";
+	private static final String PRETTY_PRINT = "pretty-print";
 
-    private final Gson gson;
-    private final Gson prettyGson;
+	private final Gson gson;
+	private final Gson prettyGson;
 
-    @Context
-    private UriInfo ui;
+	@Context
+	private UriInfo ui;
 
-    public GsonProvider() {
-        GsonBuilder builder = new GsonBuilder()
-                .serializeNulls()
-                .enableComplexMapKeySerialization();
+	public GsonProvider() {
+		GsonBuilder builder = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization();
 
-        this.gson = builder.create();
-        this.prettyGson = builder.setPrettyPrinting().create();
-    }
+		this.gson = builder.create();
+		this.prettyGson = builder.setPrettyPrinting().create();
+	}
 
-    @Override
-    public boolean isReadable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
+	@Override
+	public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return true;
+	}
 
-    @Override
-    public T readFrom(Class<T> type, Type genericType, Annotation[] annotations,
-                      MediaType mediaType, MultivaluedMap<String, String> httpHeaders,
-                      InputStream entityStream) throws IOException, WebApplicationException {
+	@Override
+	public T readFrom(Class<T> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
+			throws IOException, WebApplicationException {
 
-        InputStreamReader reader = new InputStreamReader(entityStream, "UTF-8");
-        try {
-            return gson.fromJson(reader, type);
-        } finally {
-            reader.close();
-        }
-    }
+		InputStreamReader reader = new InputStreamReader(entityStream, "UTF-8");
+		try {
+			return gson.fromJson(reader, type);
+		} finally {
+			reader.close();
+		}
+	}
 
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType,
-                               Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
+	@Override
+	public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return true;
+	}
 
-    @Override
-    public long getSize(T t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType) {
-        return -1;
-    }
+	@Override
+	public long getSize(T t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return -1;
+	}
 
-    @Override
-    public void writeTo(T t, Class<?> type, Type genericType, Annotation[] annotations,
-                        MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
-                        OutputStream entityStream) throws IOException, WebApplicationException {
+	@Override
+	public void writeTo(T t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+			throws IOException, WebApplicationException {
 
-        PrintWriter printWriter = new PrintWriter(entityStream);
-        try {
-            String json;
-            if (ui.getQueryParameters().containsKey(PRETTY_PRINT)){
-                json = prettyGson.toJson(t);
-            } else {
-                json = gson.toJson(t);
-            }
-            printWriter.write(json);
-            printWriter.flush();
-        } finally {
-            printWriter.close();
-        }
-    }
+		PrintWriter printWriter = new PrintWriter(entityStream);
+		try {
+			String json;
+			if (ui.getQueryParameters().containsKey(PRETTY_PRINT)) {
+				json = prettyGson.toJson(t);
+			} else {
+				json = gson.toJson(t);
+			}
+			printWriter.write(json);
+			printWriter.flush();
+		} finally {
+			printWriter.close();
+		}
+	}
 }

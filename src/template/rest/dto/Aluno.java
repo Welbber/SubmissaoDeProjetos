@@ -5,9 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "aluno")
 
 public class Aluno extends Pessoa {
-	
+
 	private String cpf;
-	
+
 	public Aluno() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -20,5 +20,5 @@ public class Aluno extends Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 }

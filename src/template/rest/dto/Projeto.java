@@ -1,12 +1,16 @@
 package template.rest.dto;
 
+import java.util.ArrayList;
+
 public class Projeto {
 	private String id;
-	private String tituto;
-	private Professor professor;
+	private String titulo;
+	private String matriculaProfessor;
+	private ArrayList<AlunoProjeto> alunos;
+	private ArrayList<String> matriculaAlunos;
 	private String area;
 	private String resumo;
-	private String PalavraChave1;
+	private String palavraChave1;
 	private String palavraChave2;
 	private String palavraChave3;
 	private String url;
@@ -16,17 +20,29 @@ public class Projeto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTituto() {
-		return tituto;
+	public String getTitulo() {
+		return titulo;
 	}
-	public void setTituto(String tituto) {
-		this.tituto = tituto;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
-	public Professor getProfessor() {
-		return professor;
+	public String getMatriculaProfessor() {
+		return matriculaProfessor;
 	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setMatriculaProfessor(String matriculaProfessor) {
+		this.matriculaProfessor = matriculaProfessor;
+	}
+	public ArrayList<AlunoProjeto> getAlunos() {
+		return alunos;
+	}
+	public void setAlunos(ArrayList<AlunoProjeto> alunos) {
+		this.alunos = alunos;
+	}
+	public ArrayList<String> getMatriculaAlunos() {
+		return matriculaAlunos;
+	}
+	public void setId(ArrayList<String> matriculaAlunos) {
+		this.matriculaAlunos = matriculaAlunos;
 	}
 	public String getArea() {
 		return area;
@@ -41,10 +57,10 @@ public class Projeto {
 		this.resumo = resumo;
 	}
 	public String getPalavraChave1() {
-		return PalavraChave1;
+		return palavraChave1;
 	}
 	public void setPalavraChave1(String palavraChave1) {
-		PalavraChave1 = palavraChave1;
+		this.palavraChave1 = palavraChave1;
 	}
 	public String getPalavraChave2() {
 		return palavraChave2;
@@ -64,5 +80,4 @@ public class Projeto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
 }

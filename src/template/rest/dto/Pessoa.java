@@ -6,13 +6,13 @@ public abstract class Pessoa {
 	private String nome;
 	private Endereco endereco;
 	private String curso;
-	
+
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String string) {
+		this.id = string;
 	}
 
 	public String getMatricula() {
@@ -30,13 +30,15 @@ public abstract class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public String getCurso() {
 		return curso;
 	}

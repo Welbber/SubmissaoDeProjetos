@@ -2,8 +2,8 @@ package template.rest.dto;
 
 public class Endereco {
 	private String id;
-	private String Rua;
-	private String Numero;
+	private String rua;
+	private String numero;
 	private String CEP;
 	private String cidade;
 	private String estado;
@@ -15,22 +15,22 @@ public class Endereco {
 		this.id = id;
 	}
 	public String getRua() {
-		return Rua;
+		return rua;
 	}
 	public void setRua(String rua) {
-		Rua = rua;
+		this.rua = rua;
 	}
 	public String getNumero() {
-		return Numero;
+		return numero;
 	}
 	public void setNumero(String numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 	public String getCEP() {
 		return CEP;
 	}
-	public void setCEP(String cEP) {
-		CEP = cEP;
+	public void setCEP(String cep) {
+		this.CEP = cep;
 	}
 	public String getCidade() {
 		return cidade;
